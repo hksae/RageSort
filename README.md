@@ -7,6 +7,22 @@
 
 An adaptive Radix Sort implementation optimized by bit-length grouping for signed integers.
 
+---
+
+## 🛠 Complexity Analysis
+
+### Time Complexity: $O(N \cdot \frac{K}{R})$
+- **$N$**: Number of elements.
+- **$K$**: Maximum bit-length of the numbers in the dataset.
+- **$R$**: Radix step (default is 8 bits).
+Since $K$ and $R$ are often constants for standard 64-bit integers, the algorithm performs with **near-linear time complexity**.
+
+### Space Complexity: $O(N + 2^R)$
+- **$O(N)$**: Required for temporary bucket storage during distribution.
+- **$O(2^R)$**: Memory for the bucket pointers (256 pointers for an 8-bit radix).
+
+---
+
 ## 🚀 Features
 
 - **Bit-length grouping** — Groups numbers by their bit length for better cache locality
@@ -19,11 +35,10 @@ An adaptive Radix Sort implementation optimized by bit-length grouping for signe
 
 Benchmark results on random integers (Python 3.14, radix_bits=8):
 
-| Size | RageSort (ms) | sorted() (ms) | Ratio |
-|------|---------------|---------------|-------|
-| 1,000 | 1.23 | 0.45 | 0.37x |
-| 10,000 | 12.45 | 5.67 | 0.46x |
-| 100,000 | 145.67 | 68.23 | 0.47x |
-| 500,000 | 789.34 | 401.56 | 0.51x |
-| 1,000,000 | 1689.23 | 912.34 | 0.54x |
+| Array Size | RageSort (ms) | QuickSort (ms) |
+| :--- | :---: | :---: |
+| 1,000 | 1.32 | 0.90 |
+| 10,000 | 8.64 | 13.72 |
+| 100,000 | 81.13 | 171.49 |
+| 500,000 | 462.76 | 943.11 |
 
